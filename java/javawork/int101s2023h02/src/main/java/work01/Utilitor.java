@@ -17,24 +17,17 @@ public class Utilitor {
     public static long computeIsbn10(long isbn10){
 
         int sum = 0;
-        long digit = isbn10;
+        long digit = isbn10/10;
 
         for(int mod = 2;mod < 11;mod++){
-            digit = digit / 10;
             sum += (digit % 10) * mod;
+            digit = digit / 10;
 
         }
        sum %=11;
-       if(sum == 0){
-        isbn10 = isbn10 - (isbn10 % 10);
-
-        return isbn10;
-       }
-       sum = 11 - sum;
-       isbn10 = isbn10 - (isbn10 % 10);
-       isbn10 += sum;
-
-       return isbn10;
+        sum = 11-sum;
+        digit = digit *10 +sum;
+       return digit;
     }
 
 
